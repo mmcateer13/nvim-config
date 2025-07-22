@@ -38,6 +38,9 @@ Plug("mfussenegger/nvim-dap")
 Plug("nvim-neotest/nvim-nio")
 Plug("rcarriga/nvim-dap-ui")
 
+-- Indent guidelines
+Plug("lukas-reineke/indent-blankline.nvim")
+
 -- Python debugging
 -- TODO: Set up Python debugging
 -- https://codeberg.org/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation
@@ -53,6 +56,7 @@ require("mini.icons").setup()
 require("oil").setup()
 require("nvim-treesitter.configs").setup({ highlight = { enable = true } })
 require("mason").setup()
+require("ibl").setup()
 require("mason-lspconfig").setup()
 require("plugins.cmp")
 require("plugins.telescope")
