@@ -45,6 +45,10 @@ Plug("lukas-reineke/indent-blankline.nvim")
 -- Python debugging
 Plug("mfussenegger/nvim-dap-python")
 
+-- Git diff viewer
+Plug("sindrets/diffview.nvim")
+Plug("nvim-tree/nvim-web-devicons")
+
 vim.call("plug#end")
 
 -- Any extra config needed for plugins here
