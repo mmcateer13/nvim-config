@@ -1,1 +1,3 @@
 **/.DS_Store
+# A lua module for omitting select file names from Oil
+lua/plugins/oil/oil_ignore.lua
