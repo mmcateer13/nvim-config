@@ -34,6 +34,8 @@ vim.keymap.set("n", "<Leader>dc", load_launchjs_and_continue, { desc = "DAP: Con
 vim.keymap.set("n", "<Leader>dov", dap.step_over, { desc = "DAP: Step Over" })
 vim.keymap.set("n", "<Leader>di", dap.step_into, { desc = "DAP: Step Into" })
 vim.keymap.set("n", "<Leader>dou", dap.step_out, { desc = "DAP: Step Out" })
+vim.keymap.set("n", "<Leader>dt", dap.terminate, { desc = "DAP: Terminate Session" })
+vim.keymap.set("n", "<Leader>dr", dap.restart, { desc = "DAP: Restart Session" })
 
 vim.keymap.set("n", "<Leader>tb", dap.toggle_breakpoint, { desc = "DAP: Toggle Breakpoint" })
 vim.keymap.set("n", "<Leader>dui", dapui.toggle, { desc = "DAP UI: Toggle" })
