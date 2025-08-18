@@ -30,3 +30,4 @@ end
 
 set_cc_for_filetype("*", "")
 set_cc_for_filetype("python", "72,120")
+set_cc_for_filetype("gitcommit", "50,72")
