@@ -1,0 +1,7 @@
+-- PROJECT SPECIFIC CONFIGS
+--
+-- Inside of this package, define modules for any config you want confined to a single project.
+-- As long as the module contains a setup() function, you can import it for use.
+-- The module to be activated is set using the NVIM_PROJECT_CONFIG_NAME environment variable.
+-- The value should be set to the name of the module (not including the .lua extension).
+-- Any modules defined here are local and will not be picked up by git.

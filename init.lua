@@ -1,4 +1,4 @@
-require("myconfig")
+require("myconfig").setup()
 require("plugins")
 
 -- TODO: Lualine
