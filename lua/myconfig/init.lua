@@ -5,8 +5,8 @@ local function string_is_empty(s)
 end
 
 function M.setup()
-	require("myconfig.keymaps")
-	require("myconfig.options")
+	require("myconfig.keymaps").setup()
+	require("myconfig.options").setup()
 
 	-- Attempt to load any project-specific settings
 	local project_to_load = vim.env.NVIM_PROJECT_CONFIG_NAME

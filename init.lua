@@ -1,2 +1,2 @@
 require("myconfig").setup()
-require("plugins")
+require("plugins").setup()

@@ -1,22 +1,4 @@
-local builtin = require("telescope.builtin")
-local utils = require("telescope.utils")
-
-vim.keymap.set("n", "<Leader>ff", builtin.find_files, { desc = "Telescope: Find Files" })
-vim.keymap.set("n", "<Leader>fg", builtin.live_grep, { desc = "Telescope: Live Grep" })
-vim.keymap.set("n", "<Leader>fb", builtin.buffers, { desc = "Telescope: Buffers" })
-vim.keymap.set("n", "<Leader>fh", builtin.help_tags, { desc = "Telescope: Help Tags" })
-
-vim.keymap.set("n", "<Leader>FF", function()
-	builtin.find_files({
-		cwd = utils.buffer_dir(),
-	})
-end, { desc = "Telescope: Find Files in Buffer Dir" })
-
-vim.keymap.set("n", "<Leader>FG", function()
-	builtin.live_grep({
-		cwd = utils.buffer_dir(),
-	})
-end, { desc = "Telescope: Live Grep in Buffer Dir" })
+local M = {}
 
 local function resolve_search_path(rel_path)
 	return vim.fn.fnamemodify(rel_path, ":p")
@@ -46,20 +28,44 @@ local function validate_search_path(search_path)
 	return abs_search_path:sub(1, #abs_cwd) == abs_cwd
 end
 
-vim.api.nvim_create_user_command("FindFilesInDir", function(args)
-	abs_path = resolve_search_path(args.fargs[1])
-	if not validate_search_path(abs_path) then
-		print("Error: Path is invalid")
-		return
-	end
-	builtin.find_files({ cwd = abs_path })
-end, { nargs = 1, complete = "dir_in_path" })
+function M.setup()
+	local builtin = require("telescope.builtin")
+	local utils = require("telescope.utils")
 
-vim.api.nvim_create_user_command("LiveGrepInDir", function(args)
-	abs_path = resolve_search_path(args.fargs[1])
-	if not validate_search_path(abs_path) then
-		print("Error: Path is invalid")
-		return
-	end
-	builtin.live_grep({ cwd = abs_path })
-end, { nargs = 1, complete = "dir_in_path" })
+	vim.keymap.set("n", "<Leader>ff", builtin.find_files, { desc = "Telescope: Find Files" })
+	vim.keymap.set("n", "<Leader>fg", builtin.live_grep, { desc = "Telescope: Live Grep" })
+	vim.keymap.set("n", "<Leader>fb", builtin.buffers, { desc = "Telescope: Buffers" })
+	vim.keymap.set("n", "<Leader>fh", builtin.help_tags, { desc = "Telescope: Help Tags" })
+
+	vim.keymap.set("n", "<Leader>FF", function()
+		builtin.find_files({
+			cwd = utils.buffer_dir(),
+		})
+	end, { desc = "Telescope: Find Files in Buffer Dir" })
+
+	vim.keymap.set("n", "<Leader>FG", function()
+		builtin.live_grep({
+			cwd = utils.buffer_dir(),
+		})
+	end, { desc = "Telescope: Live Grep in Buffer Dir" })
+
+	vim.api.nvim_create_user_command("FindFilesInDir", function(args)
+		abs_path = resolve_search_path(args.fargs[1])
+		if not validate_search_path(abs_path) then
+			print("Error: Path is invalid")
+			return
+		end
+		builtin.find_files({ cwd = abs_path })
+	end, { nargs = 1, complete = "dir_in_path" })
+
+	vim.api.nvim_create_user_command("LiveGrepInDir", function(args)
+		abs_path = resolve_search_path(args.fargs[1])
+		if not validate_search_path(abs_path) then
+			print("Error: Path is invalid")
+			return
+		end
+		builtin.live_grep({ cwd = abs_path })
+	end, { nargs = 1, complete = "dir_in_path" })
+end
+
+return M

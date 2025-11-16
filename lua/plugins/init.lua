@@ -1,3 +1,5 @@
+local M = {}
+
 local vim = vim
 local Plug = vim.fn["plug#"]
 
@@ -51,17 +53,18 @@ Plug("nvim-tree/nvim-web-devicons")
 
 vim.call("plug#end")
 
--- Any extra config needed for plugins here
--- Call any setup here too, unless additional config is needed.
--- In that case, the setup is likely in its own module.
-require("mini.icons").setup()
-require("nvim-treesitter.configs").setup({ highlight = { enable = true } })
-require("mason").setup()
-require("ibl").setup()
-require("mason-lspconfig").setup()
-require("plugins.cmp")
-require("plugins.colorscheme").setup()
-require("plugins.telescope")
-require("plugins.gitblame")
-require("plugins.dap")
-require("plugins.oil")
+function M.setup()
+	require("ibl").setup()
+	require("mason").setup()
+	require("mason-lspconfig").setup()
+	require("mini.icons").setup()
+	require("plugins.cmp").setup()
+	require("plugins.colorscheme").setup()
+	require("plugins.dap").setup()
+	require("plugins.gitblame").setup()
+	require("plugins.oil").setup()
+	require("plugins.telescope").setup()
+	require("plugins.treesitter").setup()
+end
+
+return M
