@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# This hook ensures lua code is formatted before committing.
+
+# NOTE: Given this is the 'pre-commit' script, hooks will need
+# rearranged into their own scripts if another is added.
+
+REPO_ROOT=$(git rev-parse --show-toplevel)
+cd $REPO_ROOT
+
+echo "Running stylua check..."
+
+# NOTE: This hook does not check the state of staged code specifically.
+# This means if staged code is not formatted properly and the hook runs,
+# improperly formatted code can make it past the hook by simply
+# committing again without staging the changes made by the formatter.
+# Unless this repo becomes a shared project, this issue can be ignored.
+stylua --check . >/dev/null 2>&1
+if [ $? -ne 0 ]; then
+    echo "Stylua check failed."
+    stylua . >/dev/null 2>&1
+    echo "Invalid changes have been auto-formatted. Please stage them and try again."
+    exit 1
+fi
+
+echo "Stylua check passed."
+exit 0
