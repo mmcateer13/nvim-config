@@ -1,5 +1,7 @@
 local M = {}
 
+local MASON_PATH = vim.fn.stdpath("data") .. "/mason"
+
 function M.setup()
 	local dap, dapui, dap_python = require("dap"), require("dapui"), require("dap-python")
 
@@ -87,6 +89,39 @@ function M.setup()
 
 	vim.keymap.set("n", "<Leader>ddc", open_repl, { desc = "DAP UI: Open Debug Console" })
 	vim.keymap.set("n", "<Leader>dui", dapui.toggle, { desc = "DAP UI: Toggle" })
+
+	-- Rust config
+	-- TODO: Refactor any lang-specific behaviour into their own modules.
+	dap.adapters.codelldb = {
+		type = "executable",
+		command = MASON_PATH .. "/packages/codelldb/extension/adapter/codelldb",
+	}
+	dap.configurations.rust = {
+		-- I looked into replacing "program" with "cargo" here,
+		-- as per the codelldb docs... but at the moment, it seems
+		-- nvim-dap requires a "program" argument. The below solution
+		-- to skip prompting for the binary name by using an
+		-- environment variable more than works for now.
+		{
+			name = "Debug Rust binary",
+			type = "codelldb",
+			request = "launch",
+			program = function()
+				bin_dir = vim.fn.getcwd() .. "/target/debug/"
+
+				bin_name = vim.env.NVIM_DEBUG_RUST_BINARY
+				if bin_name == nil then
+					bin_path = vim.fn.input("Path to executable: ", bin_dir, "file")
+				else
+					bin_path = bin_dir .. bin_name
+				end
+
+				return bin_path
+			end,
+			cwd = "${workspaceFolder}",
+			stopOnEntry = false,
+		},
+	}
 end
 
 return M

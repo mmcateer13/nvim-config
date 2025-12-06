@@ -9,6 +9,7 @@ function M.setup()
 			"lua",
 			"markdown",
 			"python",
+			"rust",
 			"terraform",
 			"toml",
 			"yaml",
