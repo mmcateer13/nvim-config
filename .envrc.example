@@ -1,0 +1,8 @@
+# Below are example values for the different
+# environment variables used throughout the editor config.
+
+# For further info, see `docs/environment_variables.md`.
+
+export NVIM_COLOR_SCHEME="gruvbox"
+export NVIM_DEBUG_RUST_BINARY="hello-world"
+export NVIM_PROJECT_CONFIG_NAME="my_custom_lua_module"
