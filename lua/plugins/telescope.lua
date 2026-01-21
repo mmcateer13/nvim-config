@@ -37,13 +37,13 @@ function M.setup()
 	vim.keymap.set("n", "<Leader>fb", builtin.buffers, { desc = "Telescope: Buffers" })
 	vim.keymap.set("n", "<Leader>fh", builtin.help_tags, { desc = "Telescope: Help Tags" })
 
-	vim.keymap.set("n", "<Leader>FF", function()
+	vim.keymap.set("n", "<Leader>fF", function()
 		builtin.find_files({
 			cwd = utils.buffer_dir(),
 		})
 	end, { desc = "Telescope: Find Files in Buffer Dir" })
 
-	vim.keymap.set("n", "<Leader>FG", function()
+	vim.keymap.set("n", "<Leader>fG", function()
 		builtin.live_grep({
 			cwd = utils.buffer_dir(),
 		})

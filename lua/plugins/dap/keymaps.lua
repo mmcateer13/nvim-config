@@ -4,12 +4,14 @@ function M.setup()
 	local dap, dapui, dap_python = require("dap"), require("dapui"), require("dap-python")
 	local vscode = require("dap.ext.vscode")
 
-	-- DAP
-	vim.keymap.set("n", "<Leader>tb", dap.toggle_breakpoint, { desc = "DAP: Toggle Breakpoint" })
-	vim.keymap.set("n", "<Leader>tB", function()
+	-- Breakpoints
+	vim.keymap.set("n", "<Leader>bt", dap.toggle_breakpoint, { desc = "DAP: Toggle Breakpoint" })
+	vim.keymap.set("n", "<Leader>bT", function()
 		dap.toggle_breakpoint(vim.fn.input("Breakpoint Condition: "))
 	end, { desc = "DAP: Conditional Breakpoint" })
-	vim.keymap.set("n", "<Leader>cb", dap.clear_breakpoints, { desc = "DAP: Clear All Breakpoints" })
+	vim.keymap.set("n", "<Leader>bc", dap.clear_breakpoints, { desc = "DAP: Clear All Breakpoints" })
+
+	-- Debugging
 	vim.keymap.set("n", "<Leader>dc", function()
 		if vim.fn.filereadable(".vscode/launch.json") == 1 then
 			vscode.load_launchjs()
