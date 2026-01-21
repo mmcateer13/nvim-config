@@ -15,7 +15,7 @@ Plug("tomasr/molokai")
 -- Telescope + dependencies
 Plug("nvim-lua/plenary.nvim")
 Plug("nvim-telescope/telescope.nvim", { ["tag"] = "0.1.8" })
-Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
+Plug("nvim-treesitter/nvim-treesitter", { ["branch"] = "master", ["do"] = ":TSUpdate" })
 
 -- Oil + file icons
 Plug("stevearc/oil.nvim")
