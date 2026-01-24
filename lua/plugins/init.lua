@@ -11,6 +11,10 @@ vim.call("plug#begin")
 Plug("morhetz/gruvbox")
 Plug("folke/tokyonight.nvim")
 Plug("tomasr/molokai")
+Plug("rose-pine/neovim", { ["as"] = "rose-pine" })
+Plug("rebelot/kanagawa.nvim")
+Plug("catppuccin/nvim", { ["as"] = "catppuccin" })
+Plug("EdenEast/nightfox.nvim")
 
 -- Telescope + dependencies
 Plug("nvim-lua/plenary.nvim")
