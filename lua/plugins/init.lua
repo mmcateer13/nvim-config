@@ -32,6 +32,9 @@ Plug("mason-org/mason.nvim")
 Plug("neovim/nvim-lspconfig")
 Plug("mason-org/mason-lspconfig.nvim")
 
+-- Lualine
+Plug("nvim-lualine/lualine.nvim")
+
 -- Autocomplete + sources
 Plug("hrsh7th/nvim-cmp")
 Plug("hrsh7th/cmp-nvim-lsp")
@@ -65,6 +68,7 @@ function M.setup()
 	require("plugins.colorscheme").setup()
 	require("plugins.dap").setup()
 	require("plugins.gitblame").setup()
+	require("plugins.lualine").setup()
 	require("plugins.mason").setup()
 	require("plugins.oil").setup()
 	require("plugins.telescope").setup()
