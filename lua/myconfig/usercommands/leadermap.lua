@@ -43,7 +43,7 @@ local function format_keymap(keymap, left_padding)
 	return string.rep(" ", left_padding) .. formatted_keymap
 end
 
-local function show_leader_maps()
+function M.show_leader_maps()
 	-- Percentages here are expressed as decimals, e.g. 0.8 = 80%.
 	local MAX_WINDOW_WIDTH_PERCENT = 0.8
 	local MAX_WINDOW_HEIGHT_PERCENT = 0.8
@@ -115,13 +115,6 @@ local function show_leader_maps()
 
 	vim.keymap.set("n", "<Esc>", close_win, { buffer = buf, nowait = true })
 	vim.keymap.set("n", "q", close_win, { buffer = buf, nowait = true })
-end
-
-function M.setup()
-	-- Create the :LeaderMaps user command
-	vim.api.nvim_create_user_command("LeaderMaps", show_leader_maps, {
-		desc = "Show all leader-based keymaps in a floating window",
-	})
 end
 
 return M
