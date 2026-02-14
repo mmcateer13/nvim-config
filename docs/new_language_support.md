@@ -4,22 +4,26 @@ This guide serves as a sort of "note-to-self" for properly supporting new langua
 
 ## Treesitter
 
-Thanks to the `ensure_installed` option that comes with `nvim-treesitter`, all that is needed is to include the name of the parser for your new language inside the call to `setup` in `/lua/plugins/treesitter.lua`:
+Add the parser name to the `non_core_parsers` list in `/lua/plugins/treesitter.lua`:
 
 ```lua
-ensure_installed = {
+local non_core_parsers = {
     "bash",
-    "lua",
-    "markdown",
+    "elixir",
+    "python",
     ...
-},
+}
 ```
 
-The parser will then be installed the next time Neovim is started up. This keeps required parsers synced across different environments. It is also possible to manually install the parser by using `:TSInstall <parser>`.
+The parser will be installed on next startup. Manual install: `:TSInstall <parser>`.
+
+Note: Lua and Markdown parsers are bundled with Neovim and don't need to be installed.
 
 ## LSP
 
-Much like Treesitter, all that is needed for supporting an LSP is to once again include the name of the LSP inside of `ensure_installed`, this time inside `/lua/plugins/mason.lua`:
+Adding LSP support requires two steps:
+
+1. Add the LSP to Mason's `ensure_installed` in `/lua/plugins/mason.lua`:
 
 ```lua
 ensure_installed = {
@@ -29,18 +33,24 @@ ensure_installed = {
 },
 ```
 
-The behaviour is the exact same — on startup, any missing LSPs will be installed. There are also manual install commands: either `:MasonInstall` or `:LspInstall`.
+2. Add the LSP name to the servers list in `/lua/plugins/lsp.lua`:
+
+```lua
+local servers = { "elixirls", "lua_ls", "pyright", "rust_analyzer", "terraformls" }
+```
+
+On startup, missing LSPs will be installed via Mason. Manual install: `:MasonInstall` or `:LspInstall`.
 
 ### LSP Auto-complete
 
-Since `mason-lspconfig` automatically enables LSPs and LSP completion is already configured inside of `/lua/plugins/cmp.lua`, nothing should need done to begin using auto-completion when a new LSP is installed.
+LSP completion is configured in `/lua/plugins/cmp.lua` and works automatically for all enabled language servers.
 
 ### LSP Naming Differences
 
-On Mason, some packages will have two names side-by-side, e.g:
+On Mason, some packages show two names:
 
 ```
 terraform-ls terraformls
 ```
 
-When installing/uninstalling LSPs via Mason, use the first name. When installing/uninstalling via `mason-lspconfig`, however, use the second name. The second name is also the one used when specifying LSPs inside `ensure_installed`.
+Use the first name for Mason commands, the second name for `mason-lspconfig` and the `servers` list in `lsp.lua`.
