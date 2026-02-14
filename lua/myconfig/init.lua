@@ -8,6 +8,7 @@ function M.setup()
 	require("myconfig.codefold").setup()
 	require("myconfig.keymaps").setup()
 	require("myconfig.options").setup()
+	require("myconfig.usercommands").setup()
 
 	-- Attempt to load any project-specific settings
 	local project_to_load = vim.env.NVIM_PROJECT_CONFIG_NAME
