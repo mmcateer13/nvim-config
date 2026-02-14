@@ -1,32 +1,30 @@
 local M = {}
 
 function M.setup()
-	require("nvim-treesitter.configs").setup({
-		ensure_installed = {
-			"bash",
-			"elixir",
-			"json",
-			"lua",
-			"markdown",
-			"python",
-			"rust",
-			"terraform",
-			"toml",
-			"yaml",
-		},
+	local treesitter = require("nvim-treesitter")
+	treesitter.setup({ install_dir = vim.fn.stdpath("data") .. "/site" })
 
-		-- A note to self for some other options here where the documentation feels
-		-- a little unclear:
-		--
-		-- sync_install: whether parser installs are synchronous, i.e. blocking.
-		-- Enabling means full nvim startup will be blocked until installs are complete.
-		--
-		-- auto_install: whether missing parsers get pulled automatically. Fires
-		-- when opening a buffer to edit a new filetype.
-		sync_install = false,
-		auto_install = false,
+	-- Lua and Markdown now already come bundled with Neovim, so do not
+	-- install them here.
+	local core_parsers = { "lua", "markdown" }
+	local non_core_parsers = {
+		"bash",
+		"elixir",
+		"json",
+		"python",
+		"rust",
+		"terraform",
+		"toml",
+		"yaml",
+	}
+	treesitter.install(non_core_parsers)
 
-		highlight = { enable = true },
+	local parsers_to_load = vim.list_extend(vim.deepcopy(core_parsers), non_core_parsers)
+	vim.api.nvim_create_autocmd("FileType", {
+		pattern = parsers_to_load,
+		callback = function()
+			vim.treesitter.start()
+		end,
 	})
 end
 

@@ -19,7 +19,7 @@ Plug("EdenEast/nightfox.nvim")
 -- Telescope + dependencies
 Plug("nvim-lua/plenary.nvim")
 Plug("nvim-telescope/telescope.nvim", { ["tag"] = "0.1.8" })
-Plug("nvim-treesitter/nvim-treesitter", { ["branch"] = "master", ["do"] = ":TSUpdate" })
+Plug("nvim-treesitter/nvim-treesitter", { ["branch"] = "main", ["do"] = ":TSUpdate" })
 
 -- Oil + file icons
 Plug("stevearc/oil.nvim")
