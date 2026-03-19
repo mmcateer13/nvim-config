@@ -35,7 +35,7 @@ function M.setup()
 	vim.keymap.set("n", "<Leader>ff", builtin.find_files, { desc = "Telescope: Find Files" })
 	vim.keymap.set("n", "<Leader>fg", builtin.live_grep, { desc = "Telescope: Live Grep" })
 	vim.keymap.set("n", "<Leader>fb", builtin.buffers, { desc = "Telescope: Buffers" })
-	vim.keymap.set("n", "<Leader>fh", builtin.help_tags, { desc = "Telescope: Help Tags" })
+	vim.keymap.set("n", "<Leader>ft", builtin.help_tags, { desc = "Telescope: Help Tags" })
 
 	vim.keymap.set("n", "<Leader>fF", function()
 		builtin.find_files({
@@ -48,6 +48,14 @@ function M.setup()
 			cwd = utils.buffer_dir(),
 		})
 	end, { desc = "Telescope: Live Grep in Buffer Dir" })
+
+	vim.keymap.set("n", "<Leader>fh", function()
+		builtin.find_files({ hidden = true })
+	end, { desc = "Telescope: Find Files (inc. hidden)" })
+
+	vim.keymap.set("n", "<Leader>fH", function()
+		builtin.find_files({ hidden = true, cwd = utils.buffer_dir() })
+	end, { desc = "Telescope: Find Files in Buffer Dir (inc. hidden)" })
 
 	vim.api.nvim_create_user_command("FindFilesInDir", function(args)
 		abs_path = resolve_search_path(args.fargs[1])
