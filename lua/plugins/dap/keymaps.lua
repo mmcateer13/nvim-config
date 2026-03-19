@@ -22,17 +22,7 @@ local DEBUG_KEYMAPS = {
 	base = "<Leader>d",
 	name = "DAP",
 	keymaps = {
-		{
-			key = "c",
-			rhs = function()
-				local use_deprecated_launchjs_loading = vim.env.NVIM_DAP_LEGACY_LAUNCH_JS_LOADING_ENABLED == "1"
-				if use_deprecated_launchjs_loading and vim.fn.filereadable(".vscode/launch.json") == 1 then
-					require("dap.ext.vscode").load_launchjs()
-				end
-				DAP.continue()
-			end,
-			desc = "DAP: Continue",
-		},
+		{ key = "c", rhs = DAP.continue, desc = "Continue" },
 		{ key = "o", rhs = DAP.step_over, desc = "Step Over" },
 		{ key = "i", rhs = DAP.step_into, desc = "Step Into" },
 		{ key = "u", rhs = DAP.step_out, desc = "Step Out" },
