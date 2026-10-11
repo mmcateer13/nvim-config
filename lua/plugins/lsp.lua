@@ -11,7 +11,7 @@ function M.setup()
 		end,
 	})
 
-	local servers = { "elixirls", "lua_ls", "pyright", "rust_analyzer", "terraformls" }
+	local servers = { "csharp_ls", "elixirls", "lua_ls", "pyright", "rust_analyzer", "terraformls" }
 	for _, server in ipairs(servers) do
 		vim.lsp.enable(server)
 	end

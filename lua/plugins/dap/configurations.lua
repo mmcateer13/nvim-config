@@ -29,6 +29,34 @@ function M.setup()
 			stopOnEntry = false,
 		},
 	}
+
+	dap.configurations.cs = {
+		{
+			name = "Launch .NET (netcoredbg)",
+			type = "netcoredbg",
+			request = "launch",
+			program = function()
+				local bin_name = vim.env.NVIM_DEBUG_CSHARP_BINARY
+				local version = vim.env.NVIM_DEBUG_CSHARP_VERSION
+
+				if bin_name ~= nil and version ~= nil then
+					return vim.fn.getcwd() .. "/bin/Debug/net" .. version .. "/" .. bin_name .. ".dll"
+				end
+
+				local default_dir = vim.fn.getcwd() .. "/bin/Debug/"
+				if version ~= nil then
+					default_dir = default_dir .. "net" .. version .. "/"
+				end
+
+				local input = vim.fn.input("Path to dll: ", default_dir, "file")
+				return input
+			end,
+			cwd = "${workspaceFolder}",
+			-- stopAtEntry ensures the process pauses before Main runs,
+			-- giving DAP time to register breakpoints before execution starts.
+			stopAtEntry = true,
+		},
+	}
 end
 
 return M
