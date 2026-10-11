@@ -74,16 +74,15 @@ See `docs/environment_variables.md` for a full description of each variable.
 
 ### Install plugins and parsers
 
-Install vim-plug plugins, Treesitter parsers, and trigger Mason's LSP
-auto-install — all without opening Neovim:
+Install vim-plug plugins without opening Neovim:
 
 ```sh
 nvim --headless +PlugInstall +qa
-nvim --headless +"lua require('nvim-treesitter').install({'bash', 'c_sharp', 'elixir', 'json', 'python', 'rust', 'terraform', 'toml', 'yaml'})" +qa
 ```
 
-Mason will auto-install LSP servers on first launch. To monitor progress,
-open Neovim and run `:Mason`.
+On first launch, Mason will automatically install all LSP servers and DAP
+adapters, and Treesitter parsers will install when you first open a file of
+each supported type. You can monitor Mason's progress with `:Mason`.
 
 ## Language-Specific Notes
 
