@@ -46,7 +46,7 @@ nvm install --lts
 ### Clone the config
 
 ```sh
-git clone https://github.com/mmcateer13/nvim-config.git ~/.config/nvim
+git clone git@github.com:mmcateer13/nvim-config.git ~/.config/nvim
 ```
 
 ### Set up git hooks
@@ -79,7 +79,7 @@ auto-install — all without opening Neovim:
 
 ```sh
 nvim --headless +PlugInstall +qa
-nvim --headless +"lua require('nvim-treesitter').install(require('plugins.treesitter').non_core_parsers)" +qa
+nvim --headless +"lua require('nvim-treesitter').install({'bash', 'c_sharp', 'elixir', 'json', 'python', 'rust', 'terraform', 'toml', 'yaml'})" +qa
 ```
 
 Mason will auto-install LSP servers on first launch. To monitor progress,
