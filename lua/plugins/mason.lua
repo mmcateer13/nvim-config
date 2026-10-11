@@ -6,6 +6,7 @@ function M.setup()
 		ensure_installed = {
 			"elixirls",
 			"lua_ls",
+			"csharp_ls",
 			"pyright",
 			"rust_analyzer",
 			"terraformls",

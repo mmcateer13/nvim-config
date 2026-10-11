@@ -4,5 +4,7 @@
 # For further info, see `docs/environment_variables.md`.
 
 export NVIM_COLOR_SCHEME="gruvbox"
+export NVIM_DEBUG_CSHARP_BINARY="my-project"
+export NVIM_DEBUG_CSHARP_VERSION="10.0"
 export NVIM_DEBUG_RUST_BINARY="hello-world"
 export NVIM_PROJECT_CONFIG_NAME="my_custom_lua_module"

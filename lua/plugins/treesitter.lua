@@ -9,6 +9,7 @@ function M.setup()
 	local core_parsers = { "lua", "markdown" }
 	local non_core_parsers = {
 		"bash",
+		"c_sharp",
 		"elixir",
 		"json",
 		"python",

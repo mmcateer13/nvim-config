@@ -9,6 +9,12 @@ function M.setup()
 		type = "executable",
 		command = MASON_PATH .. "/packages/codelldb/extension/adapter/codelldb",
 	}
+
+	dap.adapters.netcoredbg = {
+		type = "executable",
+		command = MASON_PATH .. "/packages/netcoredbg/netcoredbg",
+		args = { "--interpreter=vscode" },
+	}
 end
 
 return M
