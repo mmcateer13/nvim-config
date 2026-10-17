@@ -14,10 +14,6 @@ brew "direnv"
 brew "ripgrep"
 brew "fd"
 
-# Git tooling
-brew "git"
-brew "gh"
-
 # Lua formatting (used by the pre-commit hook)
 brew "stylua"
 

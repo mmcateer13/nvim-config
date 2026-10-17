@@ -9,9 +9,32 @@ a fresh macOS machine.
 
 Install Homebrew if not already present — see the [Homebrew installation instructions](https://brew.sh).
 
-Then install all Homebrew dependencies from the root of this repo:
+### Clone the config
+
+Check whether `git` is installed:
 
 ```sh
+git --version
+```
+
+If it is not, install it:
+
+```sh
+brew install git
+```
+
+Then clone the repo:
+
+```sh
+git clone git@github.com:mmcateer13/nvim-config.git ~/.config/nvim
+```
+
+### Install Homebrew dependencies
+
+Install all remaining Homebrew dependencies from the root of the cloned repo:
+
+```sh
+cd ~/.config/nvim
 brew bundle
 ```
 
@@ -19,7 +42,7 @@ See `Brewfile` for the full list and rationale.
 
 ### Rust
 
-Rust is managed via `rustup` rather than Homebrew — see the [rustup installation instructions](https://rustup.rs). Restart your shell after installing.
+Rust is managed via `rustup` rather than Homebrew — see the [rustup installation instructions](https://rustup.rs).
 
 ### Node.js
 
@@ -32,19 +55,6 @@ nvm install --lts
 ```
 
 ## Editor Setup
-
-### Clone the config
-
-```sh
-git clone git@github.com:mmcateer13/nvim-config.git ~/.config/nvim
-```
-
-### Set up git hooks
-
-```sh
-cd ~/.config/nvim
-./hooks/setup_hooks.sh
-```
 
 ### Set up direnv
 
@@ -61,6 +71,15 @@ cp ~/.config/nvim/.envrc.example ~/.config/nvim/.envrc.local
 ```
 
 See `docs/environment_variables.md` for a full description of each variable.
+
+Restart your shell now so the direnv hook and any installed runtimes (Rust, Node) are available for the steps below.
+
+### Set up git hooks
+
+```sh
+cd ~/.config/nvim
+./hooks/setup_hooks.sh
+```
 
 ### Install plugins and parsers
 
@@ -109,11 +128,8 @@ Mason's registry catches up, `:MasonUpdate` will handle this automatically.
 ### Python
 
 The Python DAP integration (`nvim-dap-python`) expects a virtualenv at
-`.venv/bin/python` relative to your project root. Create one with:
-
-```sh
-python3 -m venv .venv
-```
+`.venv/bin/python` relative to your project root. Create one in each project
+where you intend to use the editor — see the [venv documentation](https://docs.python.org/3/library/venv.html) for instructions.
 
 ## Per-Project Configuration
 
